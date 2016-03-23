@@ -1,14 +1,25 @@
 <?php
-$servername = "localhost";
-$username = "cloudwick";
-$password = "lydiakar";
-$dbname = "cloudwick";
+$servername	= "localhost";
+$username	= "cloudwick";
+$password	= "lydiakar";
+$dbname		= "cloudwick";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+
+$username =  $_POST['name'];
+
+$sql = "INSERT INTO cloudwick.People (FirstName )
+VALUES ('" . $username . "')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 $sql = "SELECT PersonID, FirstName, LastName FROM People";
